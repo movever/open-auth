@@ -1,6 +1,6 @@
 import {issuer} from "@openauthjs/openauth";
 import {CloudflareStorage} from "@openauthjs/openauth/storage/cloudflare";
-import {GoogleOidcProvider} from "@openauthjs/openauth/provider/google";
+import {GoogleOidcProvider, GoogleProvider} from "@openauthjs/openauth/provider/google";
 import {createSubjects} from "@openauthjs/openauth/subject";
 import {object, string} from "valibot";
 
@@ -42,10 +42,9 @@ export default {
             }),
             subjects,
             providers: {
-                google: GoogleOidcProvider({
+                google: GoogleProvider({
                     clientID: process.env.GOOGLE_CLIENT_ID,
-                    // clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-
+                    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
                 }),
             },
             theme: {
