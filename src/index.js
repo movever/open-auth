@@ -3,7 +3,6 @@ import {CloudflareStorage} from "@openauthjs/openauth/storage/cloudflare";
 import {GoogleOidcProvider, GoogleProvider} from "@openauthjs/openauth/provider/google";
 import {createSubjects} from "@openauthjs/openauth/subject";
 import {object, string} from "valibot";
-import {GithubProvider} from "@openauthjs/openauth/src/provider/github";
 
 // This value should be shared between the OpenAuth server Worker and other
 // client Workers that you connect to it, so the types and schema validation are
@@ -43,9 +42,9 @@ export default {
             }),
             subjects,
             providers: {
-                google: GoogleProvider({
+                google: GoogleOidcProvider({
                     clientID: process.env.GOOGLE_CLIENT_ID,
-                    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+                    // clientSecret: process.env.GOOGLE_CLIENT_SECRET,
                 })
             },
             theme: {
